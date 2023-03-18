@@ -6,6 +6,7 @@ namespace SPU123_Shop_MVC.Controllers
 {
     public class HomeController : Controller
     {
+        // ---------- Action Methods ----------
         public IActionResult Index()
         {
             // ...code...
