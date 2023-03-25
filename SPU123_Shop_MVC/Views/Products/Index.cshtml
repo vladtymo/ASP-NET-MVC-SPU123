@@ -1,4 +1,4 @@
-﻿@model List<Product>
+﻿@model List<SPU123_Shop_MVC.Entities.Product>
 
 <h1>Product List</h1>
 <p>You can manage the available products in the database...</p>
@@ -29,7 +29,7 @@
             <tr class="align-middle">
                 <th scope="row">@p.Id</th>
                 <td>@p.Name</td>
-                <td>@p.Category</td>
+                <td>@p.Category.Name</td>
                 <td>@p.Price$</td>
                 <td>
                     <div class="btn-group" role="group">
