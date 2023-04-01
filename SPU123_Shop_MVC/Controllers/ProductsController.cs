@@ -24,6 +24,34 @@ namespace SPU123_Shop_MVC.Controllers
             return View(products);
         }
 
+        // відкриття сторінки для створення нового продукта
+        public IActionResult Create()
+        {
+            return View();
+        }
+        // приймає створений об'єкт та додає його в БД
+        [HttpPost]
+        public IActionResult Create(Product product)
+        {
+            // TODO: add validations
+
+            // add to db
+            context.Products.Add(product);
+            context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Details(int id)
+        {
+            var item = context.Products.Include(x => x.Category).FirstOrDefault(x => x.Id == id);
+
+            if (item == null)
+                return NotFound();
+
+            return View(item);
+        }
+
         public IActionResult Delete(int id)
         {
             // delete product
