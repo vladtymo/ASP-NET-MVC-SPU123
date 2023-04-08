@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Data;
 using Data.Entities;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace SPU123_Shop_MVC.Controllers
 {
@@ -14,6 +15,14 @@ namespace SPU123_Shop_MVC.Controllers
             this.context = context;
         }
 
+        private void LoadCategories()
+        {
+            // transfer data to view
+            // 1 - using TempData["key"] = value
+            //TempData["categoryList"] = context.Categories.ToList();
+            // 2 - using ViewBag.PropertyName = value;
+            ViewBag.CategoryList = new SelectList(context.Categories.ToList(), "Id", "Name");
+        }
         public IActionResult Index()
         {
             // read products from db
@@ -27,6 +36,7 @@ namespace SPU123_Shop_MVC.Controllers
         // відкриття сторінки для створення нового продукта
         public IActionResult Create()
         {
+            LoadCategories();
             return View();
         }
         // приймає створений об'єкт та додає його в БД
@@ -36,6 +46,7 @@ namespace SPU123_Shop_MVC.Controllers
             // model validation
             if (!ModelState.IsValid) // using model metadata
             {
+                LoadCategories();
                 return View("Create");
             }
 
@@ -53,12 +64,17 @@ namespace SPU123_Shop_MVC.Controllers
             if (item == null)
                 return NotFound();
 
+            LoadCategories();
             return View(item);
         }
         [HttpPost]
         public IActionResult Edit(Product product)
         {
-            if (!ModelState.IsValid) return View("Edit");
+            if (!ModelState.IsValid)
+            {
+                LoadCategories();
+                return View("Edit");
+            }
             
             context.Products.Update(product);
             context.SaveChanges();
