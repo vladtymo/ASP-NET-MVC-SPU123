@@ -4,6 +4,13 @@ namespace Data.Entities
 {
     public class Product
     {
+        /* Data Annotation Attributes: 
+         *      Min/MaxLength, StringLength
+         *      Required
+         *      Range
+         *      PhoneNumber, EmailAddress, CreditCard
+         *      RegularExpression
+         */
         public int Id { get; set; }
 
         [Required, MinLength(3, ErrorMessage = "Name must has at least 3 characters.")]
