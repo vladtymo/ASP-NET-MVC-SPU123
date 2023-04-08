@@ -1,4 +1,4 @@
-﻿namespace SPU123_Shop_MVC.Entities
+﻿namespace Data.Entities
 {
     public class Product
     {

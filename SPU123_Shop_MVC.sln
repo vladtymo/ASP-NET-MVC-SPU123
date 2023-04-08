@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPU123_Shop_MVC", "SPU123_Shop_MVC\SPU123_Shop_MVC.csproj", "{80C62C2D-5A02-4D8B-A226-BEBCF3D2C745}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SPU123_Shop_MVC", "SPU123_Shop_MVC\SPU123_Shop_MVC.csproj", "{80C62C2D-5A02-4D8B-A226-BEBCF3D2C745}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{6DEC3F7F-EE8B-487F-B78E-E7CA86736F3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{80C62C2D-5A02-4D8B-A226-BEBCF3D2C745}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80C62C2D-5A02-4D8B-A226-BEBCF3D2C745}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80C62C2D-5A02-4D8B-A226-BEBCF3D2C745}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DEC3F7F-EE8B-487F-B78E-E7CA86736F3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DEC3F7F-EE8B-487F-B78E-E7CA86736F3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DEC3F7F-EE8B-487F-B78E-E7CA86736F3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DEC3F7F-EE8B-487F-B78E-E7CA86736F3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

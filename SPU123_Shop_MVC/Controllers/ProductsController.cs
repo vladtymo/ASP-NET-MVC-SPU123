@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SPU123_Shop_MVC.Data;
-using SPU123_Shop_MVC.Entities;
+using Data;
+using Data.Entities;
 using System.Xml.Linq;
 
 namespace SPU123_Shop_MVC.Controllers

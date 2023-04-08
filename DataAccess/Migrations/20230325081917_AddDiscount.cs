@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace SPU123_Shop_MVC.Migrations
+namespace Data.Migrations
 {
     public partial class AddDiscount : Migration
     {

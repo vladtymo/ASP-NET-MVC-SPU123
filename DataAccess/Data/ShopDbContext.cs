@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SPU123_Shop_MVC.Entities;
+using Data.Entities;
 
-namespace SPU123_Shop_MVC.Data
+namespace Data
 {
     public class ShopDbContext : DbContext
     {

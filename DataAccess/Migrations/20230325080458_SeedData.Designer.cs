@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SPU123_Shop_MVC.Data;
+using Data;
 
 #nullable disable
 
-namespace SPU123_Shop_MVC.Migrations
+namespace Data.Migrations
 {
     [DbContext(typeof(ShopDbContext))]
-    [Migration("20230325075728_Initial")]
-    partial class Initial
+    [Migration("20230325080458_SeedData")]
+    partial class SeedData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,6 +38,48 @@ namespace SPU123_Shop_MVC.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Electronics"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Sport"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Fashion"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Home & Garden"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Transport"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Toys & Hobbies"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Musical Instruments"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Art"
+                        });
                 });
 
             modelBuilder.Entity("SPU123_Shop_MVC.Entities.Product", b =>
@@ -66,6 +108,36 @@ namespace SPU123_Shop_MVC.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            Name = "iPhone X",
+                            Price = 650m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 2,
+                            Name = "PowerBall",
+                            Price = 45.5m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 3,
+                            Name = "Nike T-Shirt",
+                            Price = 189m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 1,
+                            Name = "Samsung S23",
+                            Price = 1200m
+                        });
                 });
 
             modelBuilder.Entity("SPU123_Shop_MVC.Entities.Product", b =>

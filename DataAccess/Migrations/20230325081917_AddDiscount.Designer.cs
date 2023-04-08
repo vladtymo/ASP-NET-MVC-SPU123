@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SPU123_Shop_MVC.Data;
+using Data;
 
 #nullable disable
 
-namespace SPU123_Shop_MVC.Migrations
+namespace Data.Migrations
 {
     [DbContext(typeof(ShopDbContext))]
     [Migration("20230325081917_AddDiscount")]
