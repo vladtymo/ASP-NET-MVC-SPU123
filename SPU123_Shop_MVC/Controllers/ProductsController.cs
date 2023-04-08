@@ -46,6 +46,26 @@ namespace SPU123_Shop_MVC.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Edit(int id)
+        {
+            var item = context.Products.Find(id);
+
+            if (item == null)
+                return NotFound();
+
+            return View(item);
+        }
+        [HttpPost]
+        public IActionResult Edit(Product product)
+        {
+            if (!ModelState.IsValid) return View("Edit");
+            
+            context.Products.Update(product);
+            context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Details(int id)
         {
             var item = context.Products.Include(x => x.Category).FirstOrDefault(x => x.Id == id);

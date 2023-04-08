@@ -17,6 +17,8 @@ namespace Data.Entities
         [Range(0, int.MaxValue)]
         public decimal? Discout { get; set; }
 
+        public bool InStock { get; set; }
+
         [StringLength(1000, MinimumLength = 10)]
         public string? Description { get; set; }
 
