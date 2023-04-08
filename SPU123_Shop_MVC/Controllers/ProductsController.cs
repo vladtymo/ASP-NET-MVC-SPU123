@@ -33,7 +33,11 @@ namespace SPU123_Shop_MVC.Controllers
         [HttpPost]
         public IActionResult Create(Product product)
         {
-            // TODO: add validations
+            // model validation
+            if (!ModelState.IsValid) // using model metadata
+            {
+                return View("Create");
+            }
 
             // add to db
             context.Products.Add(product);

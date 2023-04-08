@@ -6,15 +6,18 @@
     <div class="col-md-12">
         <label asp-for="Name" class="form-label">Name</label>
         <input asp-for="Name" type="text" class="form-control" placeholder="Enter product name">
+        <span asp-validation-for="Name" class="form-text text-danger"></span>
     </div>
    
     <div class="col-md-6">
         <label asp-for="Price" class="form-label">Price</label>
         <input asp-for="Price" type="number" class="form-control" placeholder="Enter product price">
+        <span asp-validation-for="Price" class="form-text text-danger"></span>
     </div>
     <div class="col-md-6">
         <label asp-for="Discout" class="form-label">Discount</label>
         <input asp-for="Discout" type="number" class="form-control" placeholder="Enter product discount">
+        <span asp-validation-for="Discout" class="form-text text-danger"></span>
     </div>
     <div class="col-md-12">
         <label asp-for="CategoryId" class="form-label">Category</label>
@@ -23,10 +26,12 @@
             <option value="2">Sport</option>
             <option value="3">Fashion</option>
         </select>
+        <span asp-validation-for="CategoryId" class="form-text text-danger"></span>
     </div>
     <div class="col-md-12">
         <label asp-for="Description" class="form-label">Description</label>
         <textarea asp-for="Description" class="form-control" rows="3" placeholder="Enter product description"></textarea>
+        <span asp-validation-for="Description" class="form-text text-danger"></span>
     </div>
     <div class="col-12">
         <div class="form-check">
@@ -34,6 +39,7 @@
             <label class="form-check-label" for="gridCheck">
                 In Stock
             </label>
+            @*<span asp-validation-for="Name" class="form-text text-danger"></span>*@
         </div>
     </div>
 
