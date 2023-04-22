@@ -22,6 +22,7 @@ header, footer {
 }
 
 .product-card img {
+    padding: 10px 10px 10px 0;
     height: 200px;
     object-fit: contain;
 }
