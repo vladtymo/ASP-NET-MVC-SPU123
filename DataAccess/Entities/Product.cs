@@ -24,6 +24,8 @@ namespace Data.Entities
         [Range(0, int.MaxValue)]
         public decimal? Discout { get; set; }
 
+        public string? ImageUrl { get; set; }
+
         public bool InStock { get; set; }
 
         [StringLength(1000, MinimumLength = 10)]
