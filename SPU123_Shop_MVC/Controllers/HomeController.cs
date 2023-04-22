@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SPU123_Shop_MVC.Models;
 using System.Diagnostics;
 
@@ -6,11 +8,20 @@ namespace SPU123_Shop_MVC.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ShopDbContext context;
+
+        public HomeController(ShopDbContext context)
+        {
+            this.context = context;
+        }
+
         // ---------- Action Methods ----------
         public IActionResult Index()
         {
             // ...code...
-            return View(); // ~/Home/Index.cshtml
+            var products = context.Products.Include(x => x.Category).ToList();
+
+            return View(products); // ~/Home/Index.cshtml
         }
 
         public IActionResult Privacy()
