@@ -1,42 +1,35 @@
 ﻿using Data;
 using Microsoft.AspNetCore.Mvc;
 using SPU123_Shop_MVC.Helpers;
+using SPU123_Shop_MVC.Services;
 
 namespace SPU123_Shop_MVC.Controllers
 {
     public class CartController : Controller
     {
         private readonly ShopDbContext context;
+        private readonly ICartService cartService;
 
-        public CartController(ShopDbContext context)
+        public CartController(ShopDbContext context, ICartService cartService)
         {
             this.context = context;
+            this.cartService = cartService;
         }
 
         public IActionResult Index()
         {
-            List<int>? ids = HttpContext.Session.Get<List<int>>("cartData");
-            if (ids == null)
-                ids = new List<int>();
-
-            // get products by id collection
-            var products = ids.Select(id => context.Products.Find(id)).ToList();
-
-            return View(products);
+            return View(cartService.GetAll());
         }
 
         public IActionResult Add(int id)
         {
-            // add product to the cart
-            List<int>? ids = HttpContext.Session.Get<List<int>>("cartData");
-            if (ids == null)
-                ids = new List<int>();
-
-            ids.Add(id);
-
-            HttpContext.Session.Set("cartData", ids);
-
+            cartService.Add(id);
             return RedirectToAction("Index", "Home");
+        }
+        public IActionResult Remove(int id)
+        {
+            cartService.Remove(id);
+            return RedirectToAction("Index");
         }
     }
 }

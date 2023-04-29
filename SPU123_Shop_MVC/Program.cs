@@ -1,16 +1,21 @@
 using Microsoft.EntityFrameworkCore;
 using Data;
+using SPU123_Shop_MVC.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 string connStr = builder.Configuration.GetConnectionString("LocalDb");
 
-// Add services to the container.
+// Add services to the Dependency Injection (DI) container.
 builder.Services.AddControllersWithViews();
 
 // DbContext congifurations
 builder.Services.AddDbContext<ShopDbContext>(x => x.UseSqlServer(connStr));
 
+// add custom servies
+builder.Services.AddScoped<ICartService, CartService>();
+
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>

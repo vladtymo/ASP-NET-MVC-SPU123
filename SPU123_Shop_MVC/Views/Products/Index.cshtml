@@ -2,7 +2,9 @@
 
 <h1>Product List</h1>
 <p>You can manage the available products in the database...</p>
-<a asp-controller="Products" asp-action="Create" class="btn btn-primary">Create New Product</a>
+<a asp-controller="Products" asp-action="Create" class="btn btn-primary">
+    <i class="bi bi-plus-lg"></i> Create New Product
+</a>
 <hr />
 
 @*Razor Syntax: @if() @{..C#..} @for ...*@
@@ -47,9 +49,15 @@
                 <td>@(p.Discout ?? 0)%</td>
                 <td>
                     <div class="btn-group" role="group">
-                        <a asp-action="Details" asp-route-id="@p.Id" class="btn btn-info">Details</a>
-                        <a asp-action="Edit" asp-route-id="@p.Id" class="btn btn-warning">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@p.Id" class="btn btn-danger">Delete</a>
+                        <a asp-action="Details" asp-route-id="@p.Id" class="btn btn-info">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                        <a asp-action="Edit" asp-route-id="@p.Id" class="btn btn-warning">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@p.Id" class="btn btn-danger">
+                            <i class="bi bi-trash"></i>
+                        </a>
                     </div>
                 </td>
             </tr>
