@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Data;
 using SPU123_Shop_MVC.Services;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,9 @@ builder.Services.AddControllersWithViews();
 
 // DbContext congifurations
 builder.Services.AddDbContext<ShopDbContext>(x => x.UseSqlServer(connStr));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ShopDbContext>();
 
 // add custom servies
 builder.Services.AddScoped<ICartService, CartService>();
@@ -39,11 +43,13 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
 app.UseSession();
 
+app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
