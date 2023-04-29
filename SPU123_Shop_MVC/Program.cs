@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Data;
 using SPU123_Shop_MVC.Services;
 using Microsoft.AspNetCore.Identity;
+using DataAccess.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,7 @@ builder.Services.AddControllersWithViews();
 // DbContext congifurations
 builder.Services.AddDbContext<ShopDbContext>(x => x.UseSqlServer(connStr));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ShopDbContext>();
 
 // add custom servies

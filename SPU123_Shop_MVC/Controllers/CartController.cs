@@ -7,12 +7,10 @@ namespace SPU123_Shop_MVC.Controllers
 {
     public class CartController : Controller
     {
-        private readonly ShopDbContext context;
         private readonly ICartService cartService;
 
-        public CartController(ShopDbContext context, ICartService cartService)
+        public CartController(ICartService cartService)
         {
-            this.context = context;
             this.cartService = cartService;
         }
 

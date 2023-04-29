@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Data.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using DataAccess.Entities;
 
 namespace Data
 {
-    public class ShopDbContext : IdentityDbContext
+    public class ShopDbContext : IdentityDbContext<User>
     {
         public ShopDbContext(DbContextOptions options) : base(options) { }
 
