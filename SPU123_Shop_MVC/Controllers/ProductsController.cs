@@ -4,9 +4,11 @@ using Data;
 using Data.Entities;
 using System.Xml.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SPU123_Shop_MVC.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class ProductsController : Controller
     {
         private ShopDbContext context;
@@ -82,6 +84,7 @@ namespace SPU123_Shop_MVC.Controllers
             return RedirectToAction("Index");
         }
 
+        [AllowAnonymous] // allow access to unauthorized users
         public IActionResult Details(int id)
         {
             var item = context.Products.Include(x => x.Category).FirstOrDefault(x => x.Id == id);
