@@ -1,18 +1,10 @@
 ﻿using Data;
 using Data.Entities;
 using SPU123_Shop_MVC.Helpers;
+using SPU123_Shop_MVC.Interfaces;
 
 namespace SPU123_Shop_MVC.Services
 {
-    public interface ICartService
-    {
-        void Add(int id);
-        void Remove(int id);
-        bool IsInCart(int id);
-        int GetCount();
-        IEnumerable<Product> GetAll();
-    }
-
     public class CartService : ICartService
     {
         private readonly ShopDbContext context;

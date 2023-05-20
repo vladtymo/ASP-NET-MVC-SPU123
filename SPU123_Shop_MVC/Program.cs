@@ -5,10 +5,11 @@ using Microsoft.AspNetCore.Identity;
 using DataAccess.Entities;
 using System.Data;
 using SPU123_Shop_MVC.Helpers;
+using SPU123_Shop_MVC.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string connStr = builder.Configuration.GetConnectionString("LocalDb");
+string connStr = builder.Configuration.GetConnectionString("AzureDb");
 
 // Add services to the Dependency Injection (DI) container.
 builder.Services.AddControllersWithViews();
@@ -23,6 +24,7 @@ builder.Services.AddIdentity<User, IdentityRole>()
 
 // add custom servies
 builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IFileService, AzureFileService>();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddDistributedMemoryCache();
@@ -42,39 +44,10 @@ using (var scope = app.Services.CreateScope())
     var serviceProvider = scope.ServiceProvider;
 
     // seed roles
-    var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-    foreach (var role in Enum.GetNames(typeof(Roles)))
-    {
-        if (!await roleManager.RoleExistsAsync(role))
-        {
-            await roleManager.CreateAsync(new IdentityRole(role));
-        }
-    }
+    Seeder.SeedRoles(serviceProvider).Wait();
 
     // seed admin user
-    var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
-
-    const string USERNAME = "myadmin@myadmin.com";
-    const string PASSWORD = "Admin1@";
-
-    var existingUser = userManager.FindByNameAsync(USERNAME).Result;
-
-    if (existingUser == null)
-    {
-        var admin = new User()
-        {
-            UserName = USERNAME,
-            Email = USERNAME
-        };
-
-        var result = userManager.CreateAsync(admin, PASSWORD).Result;
-
-        if (result.Succeeded)
-        {
-            userManager.AddToRoleAsync(admin, Roles.Administrator.ToString()).Wait();
-        }
-    }
+    Seeder.SeedAdmins(serviceProvider).Wait();
 }
 
 // Configure the HTTP request pipeline.

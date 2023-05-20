@@ -1,7 +1,7 @@
 ﻿using Data;
 using Microsoft.AspNetCore.Mvc;
 using SPU123_Shop_MVC.Helpers;
-using SPU123_Shop_MVC.Services;
+using SPU123_Shop_MVC.Interfaces;
 
 namespace SPU123_Shop_MVC.Controllers
 {

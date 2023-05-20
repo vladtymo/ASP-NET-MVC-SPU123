@@ -5,16 +5,21 @@ using Data.Entities;
 using System.Xml.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authorization;
+using SPU123_Shop_MVC.Models;
+using SPU123_Shop_MVC.Interfaces;
 
 namespace SPU123_Shop_MVC.Controllers
 {
     [Authorize(Roles = "Administrator")]
     public class ProductsController : Controller
     {
-        private ShopDbContext context;
-        public ProductsController(ShopDbContext context)
+        private readonly ShopDbContext context;
+        private readonly IFileService fileService;
+
+        public ProductsController(ShopDbContext context, IFileService fileService)
         {
             this.context = context;
+            this.fileService = fileService;
         }
 
         private void LoadCategories()
@@ -43,7 +48,7 @@ namespace SPU123_Shop_MVC.Controllers
         }
         // приймає створений об'єкт та додає його в БД
         [HttpPost]
-        public IActionResult Create(Product product)
+        public async Task<IActionResult> Create(CreateProductModel product)
         {
             // model validation
             if (!ModelState.IsValid) // using model metadata
@@ -52,8 +57,22 @@ namespace SPU123_Shop_MVC.Controllers
                 return View("Create");
             }
 
+            // save product image
+            string path = await fileService.UploadImage(product.ImageFile);
+
+            Product entity = new()
+            {
+                Name = product.Name,
+                Discout = product.Discout,
+                CategoryId = product.CategoryId,
+                Description = product.Description,
+                InStock = product.InStock,
+                Price = product.Price,
+                ImageUrl = path
+            };
+
             // add to db
-            context.Products.Add(product);
+            context.Products.Add(entity);
             context.SaveChanges();
 
             return RedirectToAction("Index");
